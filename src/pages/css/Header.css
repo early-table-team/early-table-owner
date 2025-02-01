@@ -1,0 +1,95 @@
+.html, body {
+  height: 100%;
+  margin: 0;
+}
+
+header {
+  display: flex;
+  flex-direction: column; /* 세로 정렬 */
+  justify-content: s;
+  align-items: flex-start;
+  background-color: #E0DFDF;
+  color: #000000;
+  width: 250px;
+  height: 100vh;
+  z-index: 1000;
+}
+
+
+.logo-title {
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 15px 0 25px 30px;
+}
+
+header button {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  background: none;
+  border: none;
+  font-size: 20px;
+  margin: 7px 0 0 35px;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ------------------------------------------------- */
+
+
+
+
+
+
+header .logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+header .nav {
+  display: flex;
+  gap: 10px;
+}
+
+header .nav button {
+  background-color: transparent;
+  color: #000000; /* 버튼 아이콘 색상 변경 */
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.notification-icon {
+  position: relative;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -2px;
+  right: 8px;
+  background-color: royalblue;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

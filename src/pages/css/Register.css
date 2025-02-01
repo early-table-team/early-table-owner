@@ -1,0 +1,147 @@
+.html, body {
+  height: 100%;
+  margin: 0;
+}
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #ff914d;
+  background-color: #ffffff;
+  position: relative; /* 뒤로가기 버튼을 절대 위치로 설정 */
+}
+
+.register-content::-webkit-scrollbar {
+  display: none; /* 스크롤바 숨김 */
+}
+
+.register-form {
+  position: relative;
+  width: 60%;
+  background-color: #ffffff;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* 하단 고정 버튼과 내용 간 공간 확보 */
+}
+
+.register-content {
+  flex: 1; /* 버튼 제외한 공간을 차지 */
+  overflow-y: auto; /* 내용 스크롤 가능 */
+  padding: 20px; /* 내부 여백 */
+  text-align: center;
+}
+
+.register-title {
+  margin-bottom: 20px;
+  font-family: Arial, sans-serif;
+  font-size: 30px;
+  margin-top: 30px;
+}
+
+.register-input {
+  background-color: #ffffff;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 16px;
+  color: #ff914d;
+  border: #ff914d;
+  border-bottom: 1px solid #ff914d;
+  width: 90%;
+  box-sizing: border-box;
+}
+
+.register-label {
+  display: block;
+  text-align: left;
+  margin-bottom: 10px;
+  margin-left: 15px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.register-file-input {
+  display: none; /* 기본 파일 입력 숨기기 */
+}
+
+.register-file-label {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #ff914d;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.register-file-label:hover {
+  background-color: #0056b3;
+}
+
+/* 이미지 프리뷰 */
+.register-preview-container {
+  width: 30%;
+  height: fit-content; /* 프리뷰 크기 */
+  background-color: #ffffff; /* 흰 배경 */
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: #ff914d 1px solid;
+  border-radius: 8px;
+  margin: 0 auto;
+  cursor: pointer; /* 클릭 가능하게 커서 변경 */
+}
+
+.register-preview {
+  width: 200px; /* 프리뷰 이미지 크기 */
+  height: fit-content;
+  object-fit: cover;
+  border-radius: 10%;
+  border: 1px solid #ddd;
+}
+
+.register-button {
+  padding: 10px;
+  font-size: 22px;
+  font-weight: bold;
+  background-color: #ff914d;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 90%;
+  margin: 15px auto; /* 중앙 정렬 */
+}
+
+.register-button:hover {
+  background-color: #ffffff;
+  color: #ff914d;
+  border: #ff914d solid 1px;
+}
+
+/* 뒤로가기 버튼 스타일 */
+.back-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #ff914d;
+  float: left;
+}
+
+.back-button:hover {
+  text-decoration: underline;
+}
+
+/* 비밀번호 확인 오류 메시지 스타일 */
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
