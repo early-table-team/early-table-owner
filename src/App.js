@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { SSEProvider } from "./SSEProvider";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import Home from "./pages/Home"
+import StoreManage from "./pages/StoreManage"
 
 
 function App() {
@@ -18,12 +18,12 @@ function App() {
         <Route
           path="/*"
           element={
-            <SSEProvider>
+            // <SSEProvider>
               <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/home" element={<Home />} />
+                <Route path="/" element={<StoreManage />} />
+                <Route path="/store-manage" element={<StoreManage />} />
               </Routes>
-            </SSEProvider>
+            // {/* </SSEProvider> */}
           }
         />
       </Routes>

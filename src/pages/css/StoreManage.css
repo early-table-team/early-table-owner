@@ -1,0 +1,119 @@
+/* 기존 스타일 유지, 로그인 버튼과 회원가입 버튼 스타일 변경 */
+.html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.home-container {
+  display: flex;
+  background-color: white;
+  align-items: flex-start;
+  height: 100vh;
+}
+
+.home {
+  padding: 100px;
+  width: 100%;
+}
+
+.title-container {
+  display: flex;
+  width: 90%;
+  justify-content: space-between; /* 양쪽 정렬 */
+  flex-direction: row;
+}
+
+.store-drop {
+  width: 400px;
+  margin: auto 0;
+  height: fit-content;
+  font-size: 20px;
+  padding: 15px;
+  padding-right: 35px; /* 오른쪽 내부 여백 */
+}
+
+.store-info {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  padding-top: 30px;
+  justify-content: space-between; /* 양쪽 정렬 */
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+  font-size: 25px;
+  margin-right: 20px;
+  
+}
+
+.info-container p {
+  margin-top: 0;
+  width: fit-content;
+  height: 34px;
+  margin: 10px 0;  
+}
+
+.info-title {
+  width: 95px;
+}
+
+.store-info div {
+  width: fit-content
+}
+
+.img-container {
+  display: flex;
+  margin-left: auto;
+  width: max-content;
+  height: max-content;
+  flex-direction: column;
+
+}
+
+.img-container img {
+  width: 300px;
+  height: fit-content;
+  object-fit: contain;
+}
+
+.img-container button {
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #ffffff;
+  color: #959494;
+  border: #bbbbbb;
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  display: block;
+  border-radius: 10px;
+  width: 140px;
+  margin: 20px auto 0 auto;
+}
+
+
+.button-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: flex-end;
+}
+
+.button-container button {
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #ffffff;
+  color: #959494;
+  border: #bbbbbb;
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  display: block;
+  border-radius: 10px;
+  width: fit-content;
+}

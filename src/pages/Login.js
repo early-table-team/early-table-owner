@@ -32,7 +32,7 @@ function Login() {
       ] = `Bearer ${accessToken}`;
 
       console.log("로그인 성공, 토큰:", accessToken);
-      navigate("/home"); // 홈 페이지로 이동
+      navigate("/store-manage"); // 홈 페이지로 이동
     } catch (error) {
       console.log(error);
       alert("로그인 실패!");
