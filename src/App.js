@@ -4,6 +4,7 @@ import { SSEProvider } from "./SSEProvider";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import StoreManage from "./pages/StoreManage"
+import StoreCreate from "./pages/StoreCreate"
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<StoreManage />} />
                 <Route path="/store-manage" element={<StoreManage />} />
+                <Route path="/store-create" element={<StoreCreate />} />
               </Routes>
             // {/* </SSEProvider> */}
           }

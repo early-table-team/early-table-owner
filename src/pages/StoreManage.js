@@ -134,10 +134,12 @@ const StoreManage = () => {
 
 
           <div className="button-container">
-            <button>가게 추가</button>
+            <button
+            onClick={() => navigate("/store-create")}
+            >가게 추가</button>
             {selectedStore && <button>내용 변경</button>}
             {selectedStore && <button>영업시간 및 휴무 관리</button>}
-            
+
           </div>
           
         </div>
