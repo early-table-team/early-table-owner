@@ -18,12 +18,12 @@ function App() {
         <Route
           path="/*"
           element={
-            <SSEProvider>
+            // <SSEProvider>
               <Routes>
                 <Route path="/" element={<StoreManage />} />
                 <Route path="/store-manage" element={<StoreManage />} />
               </Routes>
-            </SSEProvider>
+            // {/* </SSEProvider> */}
           }
         />
       </Routes>

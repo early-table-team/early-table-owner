@@ -6,16 +6,16 @@ import "./css/Header.css"; // CSS 파일 불러오기
 
 const Header = () => {
   const navigate = useNavigate();
-  const { messages } = useSSE(); // 전역 메시지 가져오기
+  // const { messages } = useSSE(); // 전역 메시지 가져오기
   const [count, setCount] = useState(0);
 
-  useEffect(() => {
-    messages.forEach((message) => {
-      if (message.type !== "STORE_VIEW" && message.type !== "INIT") {
-        setCount((prevCount) => prevCount + 1); // 이전 카운트 기반으로 업데이트
-      }
-    });
-  }, [messages]);
+  // useEffect(() => {
+  //   messages.forEach((message) => {
+  //     if (message.type !== "STORE_VIEW" && message.type !== "INIT") {
+  //       setCount((prevCount) => prevCount + 1); // 이전 카운트 기반으로 업데이트
+  //     }
+  //   });
+  // }, [messages]);
 
   return (
     <header>
