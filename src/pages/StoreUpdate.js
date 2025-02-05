@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from "react";
-import "./css/StoreCreate.css";
-import { Link, useNavigate } from "react-router-dom"; // React Router 사용
+import "./css/StoreUpdate.css";
+import { Link, useNavigate, useLocation } from "react-router-dom"; // React Router 사용
 import instance from "../api/axios";
 import Header from "./Header";
 
 
-const StoreCreate = () => {
+const StoreUpdate = () => {
   const navigate = useNavigate();
 
 
   const [storeList, setStoreList] = useState([]); // 가게 정보를 저장할 상태
+  const [selectedStore, setSelectedStore] = useState(null); // 선택된 가게 상태
   const [loading, setLoading] = useState(true); // 로딩 상태
   const [error, setError] = useState(null); // 에러 상태
+
+  const location = useLocation();
+  const selectedStoreFromState = location.state?.selectedStore || null; // 네비게이션에서 넘어온 가게
 
   const [form, setForm] = useState({
     storeName: "",
@@ -20,10 +24,13 @@ const StoreCreate = () => {
     topRegion: "",
     bottomRegions: "",
     storeCategory: "",
-    storeAddress: "",
     profileImage: [],
   });
 
+  const [filters, setFilters] = useState({
+    regions: [],
+    storeCategories: [],
+  });
 
   const handleSubmit = async (e) => {
 
@@ -36,39 +43,96 @@ const StoreCreate = () => {
 
     console.log(selectedCode);
 
-    const selectTop = form.topRegion?.match(/[A-Za-z]+/)[0] || null;
-    const selectBottom = form.bottomRegions?.match(/[A-Za-z]+/)[0] || null;
+    const selectTop = form.topRegion && form.topRegion.match(/[A-Za-z]+/)
+      ? form.topRegion.match(/[A-Za-z]+/)[0]
+      : null;
 
-    formData.append("storeName", form.storeName);
-    formData.append("storeContents", form.storeContents);
-    formData.append("storeTel", form.storeTel);
-    formData.append("storeAddress", form.storeAddress);
-    formData.append("regionTop", selectTop);
-    formData.append("regionBottom", selectBottom);
-    formData.append("storeCategory", selectedCode || null);
+    const selectBottom = form.bottomRegions && form.bottomRegions.match(/[A-Za-z]+/)
+      ? form.bottomRegions.match(/[A-Za-z]+/)[0]
+      : null;
+    if (form.storeName) {
+      formData.append("storeName", form.storeName);
+    }
+    if (form.storeContents) {
+      formData.append("storeContents", form.storeContents);
+    }
+    if (form.storeTel) {
+
+      formData.append("storeTel", form.storeTel);
+    }
+    if (form.storeAddress) {
+      formData.append("storeAddress", form.storeAddress);
+    }
+    if (selectTop) {
+      formData.append("regionTop", selectTop);
+    }
+    if (selectBottom) {
+      formData.append("regionBottom", selectBottom);
+    }
+    if (selectedCode) {
+      formData.append("storeCategory", selectedCode);
+    }
     // 이미지가 있을 경우에만 FormData에 이미지 추가
     if (form.profileImage) {
       formData.append("profileImage", form.profileImage);
     }
 
     try {
-      await instance.post("/pending-stores", formData, {
+      await instance.put(`/pending-stores/stores/${selectedStore.storeId}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data", // multipart/form-data로 전송
         },
       });
-      alert("가게 생성 요청 성공");
+      alert("가게 수정 요청 성공");
       navigate("/login");
     } catch (error) {
-      alert("가게 생성 요청 실패");
+      alert("가게 수정 요청 실패");
     }
   };
 
+  useEffect(() => {
+    const getStoreList = async () => {
 
-  const [filters, setFilters] = useState({
-    regions: [],
-    storeCategories: [],
-  });
+      try {
+        //JWT 토큰 가져오기
+        const token = localStorage.getItem("accessToken");
+
+        const response = await instance.get("/stores", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }); // Spring Boot의 유저 정보 API 호출
+
+        const data = response.data;
+
+        setStoreList(Array.isArray(data) ? data : [data]);
+
+      } catch (error) {
+        console.error("Error fetching store list:", error);
+        setError("가게 정보를 불러오는 중 오류가 발생했습니다.");
+      } finally {
+        setLoading(false); // 로딩 상태 변경 추가
+      }
+    };
+
+    getStoreList();
+
+  }, []); // 컴포넌트 마운트 시 한 번 실행
+
+  // selectedStoreFromState 값이 있을 경우 자동으로 선택되도록 설정
+  useEffect(() => {
+    if (selectedStoreFromState) {
+      setSelectedStore(selectedStoreFromState);
+    }
+  }, [selectedStoreFromState]);
+
+
+
+  const handleStoreChange = (event) => {
+    const selectedStoreId = event.target.value;
+    const store = storeList.find((store) => store.storeId === parseInt(selectedStoreId));
+    setSelectedStore(store);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -113,7 +177,19 @@ const StoreCreate = () => {
 
         <div className="home">
           <div className="title-container">
-            <h1>가게 생성</h1>
+            <h1>가게 정보 수정</h1>
+            {/* 드롭다운 목록으로 가게 이름 선택 */}
+            <select onChange={handleStoreChange}
+              className="store-drop">
+              <option value="" disabled>
+                가게를 선택하세요
+              </option>
+              {storeList.map((store) => (
+                <option key={store.storeId} value={store.storeId}>
+                  {store.storeName}
+                </option>
+              ))}
+            </select>
           </div>
 
 
@@ -248,7 +324,7 @@ const StoreCreate = () => {
               onClick={() => {
                 handleSubmit();
               }
-              }>가게 생성</button>
+              }>가게 정보 수정</button>
           </div>
 
         </div>
@@ -257,4 +333,4 @@ const StoreCreate = () => {
   );
 };
 
-export default StoreCreate;
+export default StoreUpdate;
