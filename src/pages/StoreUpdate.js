@@ -84,7 +84,6 @@ const StoreUpdate = () => {
         },
       });
       alert("가게 수정 요청 성공");
-      navigate("/login");
     } catch (error) {
       alert("가게 수정 요청 실패");
     }

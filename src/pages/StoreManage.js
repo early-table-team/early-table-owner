@@ -36,7 +36,6 @@ const StoreManage = () => {
         }); // Spring Boot의 유저 정보 API 호출
 
         const data = response.data;
-        console.log(response.data);
 
         setStoreList(Array.isArray(data) ? data : [data]);
 
@@ -136,7 +135,9 @@ const StoreManage = () => {
             {selectedStore && <button
               onClick={() => navigate("/store/update", { state: { selectedStore } })}
             >가게 정보 수정</button>}
-            {selectedStore && <button>영업시간 및 휴무 관리</button>}
+            {selectedStore && <button
+              onClick={() => navigate("/store/hours", { state: { selectedStore } })}
+            >영업시간 및 휴무 관리</button>}
 
           </div>
 

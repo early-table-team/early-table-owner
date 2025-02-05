@@ -34,8 +34,6 @@ const StoreCreate = () => {
     );
     const selectedCode = selectedCategory ? selectedCategory.code : null;
 
-    console.log(selectedCode);
-
     const selectTop = form.topRegion?.match(/[A-Za-z]+/)[0] || null;
     const selectBottom = form.bottomRegions?.match(/[A-Za-z]+/)[0] || null;
 
