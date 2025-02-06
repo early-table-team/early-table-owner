@@ -3,7 +3,11 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { SSEProvider } from "./SSEProvider";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import Home from "./pages/Home"
+import StoreManage from "./pages/StoreManage"
+import StoreCreate from "./pages/StoreCreate"
+import StoreUpdate from "./pages/StoreUpdate"
+import StoreHours from "./pages/StoreHours"
+import WaitingSetting from "./pages/WaitingSetting"
 
 
 function App() {
@@ -20,8 +24,12 @@ function App() {
           element={
             <SSEProvider>
               <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/home" element={<Home />} />
+                <Route path="/" element={<StoreManage />} />
+                <Route path="/store/manage" element={<StoreManage />} />
+                <Route path="/store/create" element={<StoreCreate />} />
+                <Route path="/store/update" element={<StoreUpdate />} />
+                <Route path="/store/hours" element={<StoreHours />} />
+                <Route path="/waiting/setting" element={<WaitingSetting />} />
               </Routes>
             </SSEProvider>
           }
