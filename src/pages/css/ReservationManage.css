@@ -1,0 +1,209 @@
+.btn {
+    padding: 10px 15px;
+    border: 2px solid transparent;
+    background-color: white;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 5px;
+  }
+
+  .btn-rt {
+    padding: 10px 15px;
+    border: 2px solid transparent;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 5px;
+  }
+  
+  .btn.active {
+    border-color: orange;
+    font-weight: bold;
+  }
+
+  .btn-rt.active {
+    border-color: orange;
+    font-weight: bold;
+  }
+  
+  .reservation-type-btn {
+    background-color: orange;
+    color: white;
+  }
+  
+  .reservation-list {
+    margin-top: 20px;
+  }
+  
+  .reservation-item {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+
+/* 테이블 스타일 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f4f4f4;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  td {
+    background-color: #fff;
+    font-size: 16px;
+  }
+  
+  tr:hover {
+    background-color: #f9f9f9;
+  }
+  
+  /* 수정/삭제 버튼 스타일 */
+  button {
+    padding: 1px 2px;
+    margin: 0 5px;
+    font-size: 12px;
+    cursor: pointer;
+    border: 1px solid #ddd; /* 연한 회색 테두리 */
+    border-radius: 5px;
+    background-color: white; /* 흰색 배경 */
+    color: #333; /* 텍스트 색상 */
+    transition: background-color 0.3s, box-shadow 0.3s; /* 버튼의 호버 효과 */
+  }
+  
+  button.edit {
+    padding: 10px 15px;
+    border: 2px solid lightgray;
+    background-color: white;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 5px;
+    color: gray;
+    font-weight: bold;
+  }
+  
+  button.delete {
+    padding: 10px 15px;
+    border: 2px solid lightgray;
+    background-color: white;
+    color: gray;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 5px;
+  }
+  
+  button:hover {
+    background-color: #f0f0f0; /* 호버 시 배경색 변경 */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* 호버 시 미세한 그림자 */
+  }
+  
+  /* 버튼들이 하나의 셀에 들어가게끔 조정 */
+  .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  input {
+    padding: 6px 10px;
+    margin: 5px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+
+  .timeslot-list-container {
+    width: 100%; /* 화면 전체 너비 */
+    max-width: 1200px; /* 최대 너비 설정 (조절 가능) */
+    margin: 0 auto; /* 가운데 정렬 */
+  }
+  
+  .timeslot-list {
+    display: flex;
+    justify-content: space-between; /* 양쪽 정렬 */
+    align-items: center;
+    padding: 20px; /* 내부 여백 */
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+
+  .timeslot-list-item {
+    margin: 10px;
+  }
+
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+  }
+  
+  .modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  button {
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+  }
+  
+
+
+
+  .container {
+    display: flex; /* 세 개의 div를 가로로 나열 */
+    height: 100vh; /* 화면 전체 높이에 맞춰 설정 */
+  }
+
+  .top-row {
+    display: flex; /* 상단 두 개의 div는 가로로 나열 */
+    height: 50%; /* 상단 영역이 화면 높이의 절반을 차지하도록 설정 */
+  }
+  
+  .bottom-row {
+    flex: 1; /* 하단 div가 나머지 공간을 차지하도록 설정 */
+    overflow: auto; /* 내부 콘텐츠가 많을 경우 스크롤 */
+    padding: 20px;
+  }
+  
+  .div-item {
+    flex: 1; /* 각 div가 동일한 비율로 공간을 차지하도록 설정 */
+    padding: 20px;
+    margin: 10px; /* div 간 간격 설정 */
+    overflow: auto; /* 내부 콘텐츠가 많을 경우 스크롤이 생기도록 설정 */
+  }
+  
