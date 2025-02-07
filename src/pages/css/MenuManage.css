@@ -1,0 +1,249 @@
+/* 기존 스타일 유지, 로그인 버튼과 회원가입 버튼 스타일 변경 */
+.html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .home-container {
+    display: flex;
+    background-color: white;
+    align-items: flex-start;
+    height: 100vh;
+  }
+  
+  .home {
+    padding: 100px;
+    width: 100%;
+  }
+  
+  .title-container {
+    display: flex;
+    width: 90%;
+    justify-content: space-between; /* 양쪽 정렬 */
+    flex-direction: row;
+  }
+  
+  .store-drop {
+    width: 400px;
+    margin: auto 0;
+    height: fit-content;
+    font-size: 20px;
+    padding: 15px;
+    padding-right: 35px; /* 오른쪽 내부 여백 */
+  }
+  
+  .store-info {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    padding-top: 30px;
+    justify-content: space-between; /* 양쪽 정렬 */
+  }
+  
+  .info-container {
+    display: flex;
+    flex-direction: column;
+    font-size: 25px;
+    margin-right: 20px;
+    
+  }
+  
+  .info-container p {
+    margin-top: 0;
+    width: fit-content;
+    height: 34px;
+    margin: 10px 0;  
+  }
+  
+  .info-title {
+    width: 95px;
+  }
+  
+  .store-info div {
+    width: fit-content;
+  }
+  
+  .img-container {
+    display: flex;
+    margin-left: auto;
+    width: max-content;
+    height: max-content;
+    flex-direction: column;
+  
+  }
+  
+  .img-container img {
+    width: 300px;
+    height: fit-content;
+    object-fit: contain;
+  }
+  
+  .img-container button {
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #ffffff;
+    color: #959494;
+    border: #bbbbbb;
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+    display: block;
+    border-radius: 10px;
+    width: 140px;
+    margin: 20px auto 0 auto;
+  }
+  
+  
+  .button-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: flex-end;
+  }
+  
+  .button-container button {
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #ffffff;
+    color: #959494;
+    border: #bbbbbb;
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+    display: block;
+    border-radius: 10px;
+    width: fit-content;
+  }
+
+.profile-img {
+    width: 50px;
+    height: 50px;
+}
+
+  .menu-list-container {
+    width: 100%; /* 화면 전체 너비 */
+    max-width: 1200px; /* 최대 너비 설정 (조절 가능) */
+    margin: 0 auto; /* 가운데 정렬 */
+  }
+  
+  .menu-list {
+    display: flex;
+    justify-content: space-between; /* 양쪽 정렬 */
+    align-items: center;
+    padding: 20px; /* 내부 여백 */
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin-bottom: 10px;
+  }
+
+  .menu-list-item {
+    margin: 10px;
+  }
+  
+  .menu-info {
+    flex-grow: 1; /* 왼쪽 영역이 최대한 확장되도록 설정 */
+    text-align: left; /* 텍스트 왼쪽 정렬 */
+    font-size: 18px;
+    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+    overflow: hidden;
+    text-overflow: ellipsis; /* 넘칠 경우 ... 표시 */
+    padding-right: 20px; /* 버튼과 간격 조정 */
+    width: 100%; /* 넓게 확장 */
+    margin-left: 30px;
+    margin-right: 250px;
+    margin-bottom: 30px;
+  }
+  
+  .menu-button {
+    background: none;
+    border: none;
+    font-size: 22px;
+    font-weight: bold; /* 버튼 글자 굵게 */
+    color: #959494; /* 글자 색 회색 */
+    cursor: pointer;
+    min-width: 80px; /* 버튼 크기 조절 */
+    text-align: center;
+  }
+
+  .menu-mini-button {
+    background: none;
+    border: #bbbbbb;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: bold; /* 버튼 글자 굵게 */
+    color: #959494; /* 글자 색 회색 */
+    cursor: pointer;
+    min-width: 60px; /* 버튼 크기 조절 */
+    text-align: center;
+  }
+  
+  .menu-input {
+    font-size: 24px;
+    width: 130px;
+    margin: 5px;
+    padding: 5px;
+    border: #bbbbbb;
+    border-style: solid;
+    border-width: 1px;
+    width: 90%;
+    box-sizing: border-box;
+  }
+
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .modal-content {
+    width: 400px; /* 가로 크기 고정 */
+    height: 300px; /* 세로 크기 고정 */
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .search-criteria-dropdown {
+    border-radius: 4px;
+    font-size: 16px;
+    width: 300px;
+    padding: 5px;
+    border: #bbbbbb;
+    border-style: solid;
+    border-width: 1px;
+  }
+
+  .allergy-list-container {
+    width: 100%; /* 화면 전체 너비 */
+    max-width: 1200px; /* 최대 너비 설정 (조절 가능) */
+  }
+  
+  .allergy-list {
+    display: flex;
+    justify-content: space-between; /* 양쪽 정렬 */
+    align-items: center;
+    padding: 20px; /* 내부 여백 */
+    border-bottom: 1px solid #ddd;
+    width: 70%;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin-bottom: 10px;
+  }

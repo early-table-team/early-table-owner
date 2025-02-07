@@ -6,16 +6,16 @@ import "./css/Header.css"; // CSS 파일 불러오기
 
 const Header = () => {
   const navigate = useNavigate();
-  const { messages } = useSSE(); // 전역 메시지 가져오기
+  // const { messages } = useSSE(); // 전역 메시지 가져오기
   const [count, setCount] = useState(0);
 
-  useEffect(() => {
-    messages.forEach((message) => {
-      if (message.type !== "STORE_VIEW" && message.type !== "INIT") {
-        setCount((prevCount) => prevCount + 1); // 이전 카운트 기반으로 업데이트
-      }
-    });
-  }, [messages]);
+  // useEffect(() => {
+  //   messages.forEach((message) => {
+  //     if (message.type !== "STORE_VIEW" && message.type !== "INIT") {
+  //       setCount((prevCount) => prevCount + 1); // 이전 카운트 기반으로 업데이트
+  //     }
+  //   });
+  // }, [messages]);
 
   return (
     <header>
@@ -24,34 +24,46 @@ const Header = () => {
         <h2>얼리 테이블</h2>
       </div>
 
+      <Link to="/store/manage" className="login-link">
       <button>
         <img src={require("../assets/icon-store.png")} alt="" style={{ height: "40px" }} />
         <h4>가게 관리</h4>
       </button>
+      </Link>
+      <Link to="/menu-manage" className="login-link">
       <button>
         <img src={require("../assets/icon-menu.png")} alt="Logo" style={{ height: "40px" }} />
         <h4>메뉴 관리</h4>
       </button>
+      </Link>
+      <Link to="/reservation" className="login-link">
       <button>
         <img src={require("../assets/icon-reservation.png")} alt="Logo" style={{ height: "40px" }} />
         <h4>예약 내역</h4>
       </button>
+      </Link>
       <button>
         <img src={require("../assets/icon-waiting.png")} alt="Logo" style={{ height: "40px" }} />
         <h4>웨이팅 내역</h4>
       </button>
+      <Link to="/reservation-manage" className="login-link">
       <button>
         <img src={require("../assets/icon-setting.png")} alt="Logo" style={{ height: "40px" }} />
         <h4>예약 설정</h4>
       </button>
+      </Link>
+      <Link to="/waiting/setting" className="login-link">
       <button>
         <img src={require("../assets/icon-setting.png")} alt="Logo" style={{ height: "40px" }} />
         <h4>웨이팅 설정</h4>
       </button>
+      </Link>
+      <Link to="/review-manage" className="login-link">
       <button>
         <img src={require("../assets/icon-store.png")} alt="Logo" style={{ height: "40px" }} />
         <h4>리뷰 관리</h4>
       </button>
+      </Link>
 
 
 
