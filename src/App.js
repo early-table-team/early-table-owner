@@ -3,7 +3,13 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { SSEProvider } from "./SSEProvider";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import StoreManage from "./pages/StoreManage"
+import StoreManage from "./pages/StoreManage";
+import MenuManage from "./pages/MenuManage";
+import ModifyMenu from "./pages/ModifyMenu";
+import CreateMenu from "./pages/CreateMenu";
+import ReviewManage from "./pages/ReviewManage";
+import ReservationManage from "./pages/ReservationManage";
+import ReservationDetails from "./pages/ReservationDetails";
 
 
 function App() {
@@ -22,6 +28,12 @@ function App() {
               <Routes>
                 <Route path="/" element={<StoreManage />} />
                 <Route path="/store-manage" element={<StoreManage />} />
+                <Route path="/menu-manage" element={<MenuManage />} />
+                <Route path="/menu-manage/:storeId/modify/:menuId" element={<ModifyMenu />} />
+                <Route path="/menu-manage/:storeId/create" element={<CreateMenu />} />
+                <Route path="/review-manage" element={<ReviewManage />} />
+                <Route path="/reservation-manage" element={<ReservationManage />} />
+                <Route path="/reservation" element={<ReservationDetails />} />
               </Routes>
             // {/* </SSEProvider> */}
           }
