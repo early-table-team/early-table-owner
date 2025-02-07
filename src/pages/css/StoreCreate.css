@@ -1,0 +1,114 @@
+/* 기존 스타일 유지, 로그인 버튼과 회원가입 버튼 스타일 변경 */
+.html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.home-container {
+  display: flex;
+  background-color: white;
+  align-items: flex-start;
+  height: 100vh;
+}
+
+.home {
+  padding: 100px;
+  width: 100%;
+}
+
+.title-container {
+  display: flex;
+  width: 90%;
+  justify-content: space-between; /* 양쪽 정렬 */
+  flex-direction: row;
+}
+
+.store-drop {
+  width: 400px;
+  margin: auto 0;
+  height: fit-content;
+  font-size: 20px;
+  padding: 15px;
+  padding-right: 35px; /* 오른쪽 내부 여백 */
+}
+
+.store-info {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  padding-top: 30px;
+  justify-content: space-between; /* 양쪽 정렬 */
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+  font-size: 25px;
+  margin-right: 20px; 
+}
+
+.info-container p {
+  margin-top: 0;
+  width: fit-content;
+  height: 34px;
+  margin: 10px 0;  
+}
+
+select {
+  width: 195px; /* 너비 설정 */
+  height: 40px; /* 높이 설정 */
+  margin: 5px 0 10px 15px;
+  padding: 0 10px; /* 좌우 여백 */
+  font-size: 16px; /* 글자 크기 */
+  border: 1px solid #ff914d; /* 테두리 */
+  border-radius: 5px; /* 둥근 모서리 */
+  background-color: white; /* 배경 색 */
+  appearance: none; /* 기본 스타일 제거 (웹킷 브라우저에서 기본 스타일 제거) */
+  cursor: pointer; /* 커서 모양 설정 */
+  transition: all 0.3s ease; /* 부드러운 트랜지션 효과 */
+}
+
+.info-title {
+  width: 95px;
+}
+
+.store-info div {
+  width: fit-content
+}
+
+.img-container {
+  display: flex;
+  margin-left: auto;
+  width: max-content;
+  height: max-content;
+  flex-direction: column;
+}
+
+.img-container img {
+  width: 300px;
+  height: fit-content;
+  object-fit: contain;
+}
+
+.button-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: flex-end;
+}
+
+.button-container button {
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #ffffff;
+  color: #959494;
+  border: #bbbbbb;
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  display: block;
+  border-radius: 10px;
+  width: fit-content;
+}

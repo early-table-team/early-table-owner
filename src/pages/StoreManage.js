@@ -30,7 +30,6 @@ const ReservationDetails = () => {
         }); // Spring Boot의 유저 정보 API 호출
 
         const data = response.data;
-        console.log(response.data);
 
         setStoreList(Array.isArray(data) ? data : [data]);
       } catch (error) {
@@ -92,8 +91,20 @@ const ReservationDetails = () => {
             {/* 선택되지 않으면 안내 메시지 */}
             {!selectedStore && <p>가게를 선택해주세요.</p>}
 
-            <div className="button-container"></div>
+
+          <div className="button-container">
+            <button
+              onClick={() => navigate("/store/create")}
+            >가게 추가</button>
+            {selectedStore && <button
+              onClick={() => navigate("/store/update", { state: { selectedStore } })}
+            >가게 정보 수정</button>}
+            {selectedStore && <button
+              onClick={() => navigate("/store/hours", { state: { selectedStore } })}
+            >영업시간 및 휴무 관리</button>}
+
           </div>
+
         </div>
       </div>
     </div>
