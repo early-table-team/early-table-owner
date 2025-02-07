@@ -24,7 +24,7 @@ const Header = () => {
         <h2>얼리 테이블</h2>
       </div>
 
-      <Link to="/store-manage" className="login-link">
+      <Link to="/store/manage" className="login-link">
       <button>
         <img src={require("../assets/icon-store.png")} alt="" style={{ height: "40px" }} />
         <h4>가게 관리</h4>
@@ -52,10 +52,12 @@ const Header = () => {
         <h4>예약 설정</h4>
       </button>
       </Link>
+      <Link to="/waiting/setting" className="login-link">
       <button>
         <img src={require("../assets/icon-setting.png")} alt="Logo" style={{ height: "40px" }} />
         <h4>웨이팅 설정</h4>
       </button>
+      </Link>
       <Link to="/review-manage" className="login-link">
       <button>
         <img src={require("../assets/icon-store.png")} alt="Logo" style={{ height: "40px" }} />
