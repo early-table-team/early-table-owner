@@ -36,7 +36,6 @@ const StoreManage = () => {
         }); // Spring Boot의 유저 정보 API 호출
 
         const data = response.data;
-        console.log(response.data);
 
         setStoreList(Array.isArray(data) ? data : [data]);
 
@@ -51,10 +50,6 @@ const StoreManage = () => {
     getStoreList();
 
   }, []); // 컴포넌트 마운트 시 한 번 실행
-
-  const handleCardClick = (storeId) => {
-    navigate(`/store/${storeId}`);
-  };
 
   const handleStoreChange = (event) => {
     const selectedStoreId = event.target.value;
@@ -134,12 +129,18 @@ const StoreManage = () => {
 
 
           <div className="button-container">
-            <button>가게 추가</button>
-            {selectedStore && <button>내용 변경</button>}
-            {selectedStore && <button>영업시간 및 휴무 관리</button>}
-            
+            <button
+              onClick={() => navigate("/store/create")}
+            >가게 추가</button>
+            {selectedStore && <button
+              onClick={() => navigate("/store/update", { state: { selectedStore } })}
+            >가게 정보 수정</button>}
+            {selectedStore && <button
+              onClick={() => navigate("/store/hours", { state: { selectedStore } })}
+            >영업시간 및 휴무 관리</button>}
+
           </div>
-          
+
         </div>
       </div>
     </div >

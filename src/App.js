@@ -4,6 +4,10 @@ import { SSEProvider } from "./SSEProvider";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import StoreManage from "./pages/StoreManage"
+import StoreCreate from "./pages/StoreCreate"
+import StoreUpdate from "./pages/StoreUpdate"
+import StoreHours from "./pages/StoreHours"
+import WaitingSetting from "./pages/WaitingSetting"
 
 
 function App() {
@@ -21,7 +25,11 @@ function App() {
             // <SSEProvider>
               <Routes>
                 <Route path="/" element={<StoreManage />} />
-                <Route path="/store-manage" element={<StoreManage />} />
+                <Route path="/store/manage" element={<StoreManage />} />
+                <Route path="/store/create" element={<StoreCreate />} />
+                <Route path="/store/update" element={<StoreUpdate />} />
+                <Route path="/store/hours" element={<StoreHours />} />
+                <Route path="/waiting/setting" element={<WaitingSetting />} />
               </Routes>
             // {/* </SSEProvider> */}
           }
