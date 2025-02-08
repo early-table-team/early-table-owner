@@ -48,6 +48,12 @@ const ReservationDetails = () => {
     const selectedStoreId = event.target.value;
     const store = storeList.find((store) => store.storeId === parseInt(selectedStoreId));
     setSelectedStore(store);
+    setReservationDetail(null); // 예약 상세 정보 초기화
+    setReservations([]); // 기존 예약 목록 초기화
+
+    if (store) {
+      handleDateChange(selectedDate); // 선택된 날짜 기준으로 예약 데이터 다시 불러오기
+    }
   };
 
   const handleDateChange = async (date) => {
