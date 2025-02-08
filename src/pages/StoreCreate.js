@@ -50,10 +50,11 @@ const StoreCreate = () => {
     formData.append("storeCategory", selectedCode || null);
 
     // 이미지가 있을 경우에만 FormData에 이미지 추가
-    if (previewImages) {
-      previewImages.forEach((image) => {
-        formData.append("newStoreImageList", image); 
-      });    }
+    if (form.profileImage) {
+      form.profileImage.forEach((image, index) => {
+        formData.append("newStoreImageList", image); // 여러 개의 파일을 같은 키로 추가
+      });
+    }
 
     try {
       await instance.post("/pending-stores", formData, {
@@ -75,10 +76,10 @@ const StoreCreate = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-  
+
     setForm((prevForm) => {
       const newForm = { ...prevForm, [name]: value };
-  
+
       // topRegion이 변경되었을 때, bottomRegion을 자동으로 첫 번째 값으로 설정
       if (name === "topRegion" && value) {
         const selectedRegion = filters.regions.find(
@@ -89,7 +90,7 @@ const StoreCreate = () => {
           newForm.bottomRegions = selectedRegion.bottomRegions.split(",")[0].trim();
         }
       }
-  
+
       return newForm;
     });
   };
@@ -134,6 +135,11 @@ const StoreCreate = () => {
     const imageUrls = files.map((file) => URL.createObjectURL(file));
 
     setPreviewImages((prevImages) => [...prevImages, ...imageUrls]); // 기존 이미지 유지
+
+    setForm((prevForm) => ({
+      ...prevForm,
+      profileImage: [...prevForm.profileImage, ...files], // 기존 이미지에 새 이미지 추가
+    }));
   };
 
   const handleRemoveImage = (index) => {
