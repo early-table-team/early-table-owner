@@ -42,10 +42,12 @@ const Header = () => {
         <h4>예약 내역</h4>
       </button>
       </Link>
+      <Link to="/waiting" className="login-link">
       <button>
         <img src={require("../assets/icon-waiting.png")} alt="Logo" style={{ height: "40px" }} />
         <h4>웨이팅 내역</h4>
       </button>
+      </Link>
       <Link to="/reservation-manage" className="login-link">
       <button>
         <img src={require("../assets/icon-setting.png")} alt="Logo" style={{ height: "40px" }} />

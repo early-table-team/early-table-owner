@@ -14,6 +14,7 @@ import StoreCreate from "./pages/StoreCreate"
 import StoreUpdate from "./pages/StoreUpdate"
 import StoreHours from "./pages/StoreHours"
 import WaitingSetting from "./pages/WaitingSetting"
+import Waiting from "./pages/Waiting"
 
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
                 <Route path="/store/update" element={<StoreUpdate />} />
                 <Route path="/store/hours" element={<StoreHours />} />
                 <Route path="/waiting/setting" element={<WaitingSetting />} />
+                <Route path="/waiting" element={<Waiting />} />
               </Routes>
             // {/* </SSEProvider> */}
           }

@@ -1,0 +1,264 @@
+/* 기존 스타일 유지, 로그인 버튼과 회원가입 버튼 스타일 변경 */
+.html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.home-container {
+  display: flex;
+  background-color: white;
+  align-items: flex-start;
+  height: 100vh;
+}
+
+.home {
+  padding: 100px;
+  width: 100%;
+}
+
+.title-container {
+  display: flex;
+  width: 90%;
+  justify-content: space-between; /* 양쪽 정렬 */
+  flex-direction: row;
+}
+
+.store-drop {
+  width: 400px;
+  margin: auto 0;
+  height: fit-content;
+  font-size: 20px;
+  padding: 15px;
+  padding-right: 35px; /* 오른쪽 내부 여백 */
+  border: 1px solid #ff914d; /* 테두리 */
+}
+
+.store-hour-container{
+  width: 90%;
+  padding: 3px 0;
+}
+
+.store-hour-container div{
+  display: flex;
+  gap: 20px;
+  font-size: 20px;
+  height: 60px;
+}
+
+.store-hour-container div div{
+  font-size: 20px;
+  margin: auto 0 auto 0;
+  height: fit-content;
+  padding-left: 30px;
+  width: 103px;
+  text-align: center;
+}
+
+.store-hour-container div h3{
+  font-size: 20px;
+  margin: auto 0 auto 0;
+  height: fit-content;
+  text-align: center;
+}
+
+.week-title {
+  height: fit-content;
+  width: 55px;
+  margin: auto 0 auto 0;
+  padding: 0 auto 0 auto;
+}
+
+.time-input {
+  height: fit-content;
+  font-size: 20px;
+  margin: auto 0;
+}
+
+.button-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: flex-end;
+}
+
+.button-container button {
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #ffffff;
+  color: #959494;
+  border: #bbbbbb;
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  display: block;
+  border-radius: 10px;
+  width: fit-content;
+}
+
+
+/* DatePicker.css */
+.date-picker-container {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+  }
+  
+  .date-picker-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+  
+  .date-picker-text {
+    margin-top: 16px;
+    font-size: 1.125rem;
+    font-weight: 500;
+  }
+  
+  /* 🗓️ 캘린더 요일 가운데 정렬 */
+  .react-calendar__month-view__weekdays {
+    text-align: center;
+  }
+  
+  /* 📅 날짜 버튼 스타일 */
+  .react-calendar__tile {
+    background: white; /* 배경 흰색 */
+    border-radius: 8px; /* 둥근 모서리 */
+    width: 40px; /* 가로 크기 줄이기 */
+    height: 40px; /* 세로 크기 맞추기 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* 🔵 선택한 날짜 스타일 */
+  .react-calendar__tile--active {
+    background: #ff914d !important;
+    color: white !important;
+    font-weight: bold;
+  }
+
+
+.contents-container {
+  border: rebeccapurple 1px solid;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+}
+
+.detail-container {
+  display: flex;
+  flex-direction: column;
+  border: rebeccapurple 1px solid;
+}
+
+.type-container{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: flex-end;
+}
+
+.type-container button {
+  padding: 10px 30px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #ffffff;
+  color: #959494;
+  border: #bbbbbb;
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  display: block;
+  border-radius: 10px;
+  width: fit-content;
+}
+
+/* 선택된 버튼 스타일 */
+.type-container button.selected {
+  background-color: #ff914d;
+  color: white;
+  border-color: #ff914d;
+}
+
+
+
+.waiting-list {
+  list-style: none;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.waiting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  background-color: #f9f9f9;
+}
+
+.waiting-number {
+  font-weight: bold;
+}
+
+.waiting-personnel {
+  color: #333;
+}
+
+.waiting-status {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.waiting-status.pending {
+  background-color: #ffeb99;
+  color: #a67c00;
+  cursor: pointer;
+
+}
+
+.waiting-status.completed {
+  background-color: #b7f0b1;
+  color: #2e7d32;
+}
+
+.waiting-status.canceled {
+  background-color: #ffb3b3;
+  color: #d32f2f;
+}
+
+.waiting-empty {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+}
+
+.waiting-count {
+  font-size: 30px;
+  margin: 20px;
+}
+
+.bottom-row {
+  display: flex; /* 또는 block, inline-block 등으로 변경 가능 */
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 20px; /* 적당한 여백 추가 */
+}
+
+.div-item {
+  width: 100%;
+  padding: 20px;
+  background-color: #fff; /* 배경색 지정 */
+  border-radius: 8px; /* 모서리 둥글게 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+}
