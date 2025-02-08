@@ -50,7 +50,7 @@ const ReservationDetails = () => {
     setSelectedStore(store);
     setReservationDetail(null); // 예약 상세 정보 초기화
     setReservations([]); // 기존 예약 목록 초기화
-
+    setSelectedDate(new Date());
   };
 
   const handleDateChange = async (date) => {
