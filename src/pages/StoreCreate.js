@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./css/StoreCreate.css";
 import { Link, useNavigate } from "react-router-dom"; // React Router 사용
 import instance from "../api/axios";
@@ -12,6 +12,10 @@ const StoreCreate = () => {
   const [storeList, setStoreList] = useState([]); // 가게 정보를 저장할 상태
   const [loading, setLoading] = useState(true); // 로딩 상태
   const [error, setError] = useState(null); // 에러 상태
+
+
+  const fileInputRef = useRef(null);
+  const [previewImages, setPreviewImages] = useState([]);
 
   const [form, setForm] = useState({
     storeName: "",
@@ -34,8 +38,8 @@ const StoreCreate = () => {
     );
     const selectedCode = selectedCategory ? selectedCategory.code : null;
 
-    const selectTop = form.topRegion?.match(/[A-Za-z]+/)[0] || null;
-    const selectBottom = form.bottomRegions?.match(/[A-Za-z]+/)[0] || null;
+    const selectTop = form.topRegion?.match(/[A-Za-z]+/)?.[0] || null;
+    const selectBottom = form.bottomRegions?.match(/[A-Za-z]+/)?.[0] || null;
 
     formData.append("storeName", form.storeName);
     formData.append("storeContents", form.storeContents);
@@ -44,10 +48,12 @@ const StoreCreate = () => {
     formData.append("regionTop", selectTop);
     formData.append("regionBottom", selectBottom);
     formData.append("storeCategory", selectedCode || null);
+
     // 이미지가 있을 경우에만 FormData에 이미지 추가
-    if (form.profileImage) {
-      formData.append("profileImage", form.profileImage);
-    }
+    if (previewImages) {
+      previewImages.forEach((image) => {
+        formData.append("newStoreImageList", image); 
+      });    }
 
     try {
       await instance.post("/pending-stores", formData, {
@@ -56,7 +62,6 @@ const StoreCreate = () => {
         },
       });
       alert("가게 생성 요청 성공");
-      navigate("/login");
     } catch (error) {
       alert("가게 생성 요청 실패");
     }
@@ -68,9 +73,25 @@ const StoreCreate = () => {
     storeCategories: [],
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+  
+    setForm((prevForm) => {
+      const newForm = { ...prevForm, [name]: value };
+  
+      // topRegion이 변경되었을 때, bottomRegion을 자동으로 첫 번째 값으로 설정
+      if (name === "topRegion" && value) {
+        const selectedRegion = filters.regions.find(
+          (region) => region.topRegion === value
+        );
+        if (selectedRegion && selectedRegion.bottomRegions) {
+          // 첫 번째 하위 지역을 자동으로 설정
+          newForm.bottomRegions = selectedRegion.bottomRegions.split(",")[0].trim();
+        }
+      }
+  
+      return newForm;
+    });
   };
 
 
@@ -101,6 +122,23 @@ const StoreCreate = () => {
     getFilter();
 
   }, [token]);
+
+  const handlePreviewClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
+  const handleFileChange = (event) => {
+    const files = Array.from(event.target.files);
+    const imageUrls = files.map((file) => URL.createObjectURL(file));
+
+    setPreviewImages((prevImages) => [...prevImages, ...imageUrls]); // 기존 이미지 유지
+  };
+
+  const handleRemoveImage = (index) => {
+    setPreviewImages((prev) => prev.filter((_, i) => i !== index));
+  };
 
   return (
     <div className="app">
@@ -229,13 +267,30 @@ const StoreCreate = () => {
 
               </div>
             </div>
-            <div className="img-container">
-              <img
-                src={require("../assets/company-logo.png")}
-                alt="기본 프로필 이미지"
+
+            <div className="image-uploader">
+              <input
+                type="file"
+                id="newImageFile"
+                ref={fileInputRef}
+                className="hidden-input"
+                multiple
+                accept="image/*"
+                onChange={handleFileChange}
               />
-              <button>이미지 변경</button>
+
+              {/* 미리보기 영역 */}
+              <div className="preview-container">
+                {previewImages.map((src, index) => (
+                  <div key={index} className="preview-box">
+                    <img src={src} alt={`preview-${index}`} className="preview-image" />
+                    <button className="remove-btn" onClick={() => handleRemoveImage(index)}>✕</button>
+                  </div>
+                ))}
+              </div>
+              <button className="upload-btn" onClick={handlePreviewClick}>이미지 변경</button>
             </div>
+
           </div>
 
           {/* 선택되지 않으면 안내 메시지 */}
