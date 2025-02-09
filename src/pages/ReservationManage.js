@@ -395,6 +395,7 @@ const ReservationManage = () => {
                             (res) => res.reservationType === reservationType && res.dineIn
                           ) ? "active" : ""}`}
                           onClick={() => toggleOption(reservationType, "dineIn")}
+                          disabled={!reservations.some((res) => res.reservationType === reservationType)}
                         >
                           매장
                         </button>
@@ -403,6 +404,7 @@ const ReservationManage = () => {
                             (res) => res.reservationType === reservationType && res.toGo
                           ) ? "active" : ""}`}
                           onClick={() => toggleOption(reservationType, "toGo")}
+                          disabled={!reservations.some((res) => res.reservationType === reservationType)}
                         >
                           포장
                         </button>
@@ -414,9 +416,6 @@ const ReservationManage = () => {
 
               <div className="reservationtype-div2">
               <h2>테이블 목록</h2>
-              {tables.length === 0 ? (
-                <p>테이블 정보가 없습니다.</p>
-              ) : (
                 <table>
                   <thead>
                     <tr>
@@ -500,7 +499,6 @@ const ReservationManage = () => {
                     </tr>
                   </tbody>
                 </table>
-              )}
             </div>
             {selectedStore && (
             <div className="reservationtype-div3">
