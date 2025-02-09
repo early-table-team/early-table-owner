@@ -66,10 +66,11 @@ const StoreHours = () => {
         const data = response.data;
         if (data && data.length > 0) {
           const updatedList = formList.map((form) => {
-            const matchedData = data.find((data) => data.dayOfWeek === form.dayOfWeek);
+
+            const matchedData = data.find((item) => item.dayOfWeek === form.dayOfWeek);
             return matchedData
               ? { ...form, hourId: matchedData.hourId, openTime: matchedData.openTime, closedTime: matchedData.closedTime, dayStatus: matchedData.dayStatus }
-              : form;
+              : { ...form, hourId: "", openTime: "", closedTime: "", dayStatus: "OPEN" };
           });
 
           setFormList(updatedList);
@@ -86,6 +87,7 @@ const StoreHours = () => {
 
   }, [selectedStore]); // 가게 변경 시 실행
 
+  // 영업시간 정보 저장
   const handleSubmit = async (e) => {
 
     const createList = formList.filter((form) => !form.hourId);
@@ -99,21 +101,53 @@ const StoreHours = () => {
         const formData = new FormData();
 
         formData.append(`dayOfWeek`, createList[i].dayOfWeek);
-        formData.append(`openTime`, (updateList[i].openTime.length === 5 ? updateList[i].openTime + ":00" : updateList[i].openTime));
-        formData.append(`closedTime`, (updateList[i].closedTime.length === 5 ? updateList[i].closedTime + ":00" : updateList[i].closedTime));
-        formData.append(`dayStatus`, createList[i].dayStatus);
 
-        console.log(createList[i]);
+
+        if (createList[i]?.openTime) {
+          formData.append(`openTime`, (createList[i].openTime.length === 5 ? createList[i].openTime + ":00" : createList[i].openTime));
+        } else {
+
+          continue;
+        }
+        if (createList[i]?.closedTime) {
+          formData.append(`closedTime`, (createList[i].closedTime.length === 5 ? createList[i].closedTime + ":00" : createList[i].closedTime));
+        } else {
+          continue;
+        }
+        if (createList[i]?.dayStatus) {
+          formData.append(`dayStatus`, createList[i].dayStatus);
+        } else {
+          continue;
+        }
 
         try {
-          await instance.post(`/stores/${selectedStore.storeId}/hours`, formData, {
+          const response = await instance.post(`/stores/${selectedStore.storeId}/hours`, formData, {
             headers: {
               "Content-Type": "application/json",
             },
           });
+
+          console.log(response.data);
+          const dayIndexMap = {
+            MON: 0,
+            TUE: 1,
+            WED: 2,
+            THU: 3,
+            FRI: 4,
+            SAT: 5,
+            SUN: 6,
+          };
+          
+          const index = dayIndexMap[createList[i].dayOfWeek] ?? -1;
+
+          const newList = [...formList];
+          newList[index].hourId = response.data?.hourId;
+          setFormList(newList);
+
         } catch (error) {
           errorCode = error;
         }
+
       }
 
     } else if (updateList) {
@@ -124,8 +158,6 @@ const StoreHours = () => {
         formData.append(`openTime`, (updateList[i].openTime.length === 5 ? updateList[i].openTime + ":00" : updateList[i].openTime));
         formData.append(`closedTime`, (updateList[i].closedTime.length === 5 ? updateList[i].closedTime + ":00" : updateList[i].closedTime));
         formData.append(`dayStatus`, updateList[i].dayStatus);
-
-        console.log(updateList[i]);
 
         try {
           await instance.put(`/hours/${updateList[i].hourId}`, formData, {

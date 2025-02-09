@@ -99,7 +99,6 @@ const StoreManage = () => {
                     src={require("../assets/company-logo.png")}
                     alt="기본 프로필 이미지"
                   />)}
-                <button>이미지 변경</button>
               </div>
             </div>
           )}

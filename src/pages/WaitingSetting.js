@@ -10,22 +10,18 @@ const WaitingSetting = () => {
   const navigate = useNavigate();
   const [isOn, setIsOn] = useState(false);
 
-
   const [storeList, setStoreList] = useState([]); // 가게 정보를 저장할 상태
   const [selectedStore, setSelectedStore] = useState(null); // 선택된 가게 상태
   const [loading, setLoading] = useState(true); // 로딩 상태
   const [error, setError] = useState(null); // 에러 상태
 
   const location = useLocation();
-  const selectedStoreFromState = location.state?.selectedStore || null; // 네비게이션에서 넘어온 가게
-
-
 
   const [form, setForm] = useState({
     waitingSettingId: "",
     waitingOpenTime: "",
     waitingClosedTime: "",
-    waitingSettingStatus: "OFF"
+    waitingSettingStatus: "CLOSE"
   });
 
   const handleChange = (e) => {
@@ -108,6 +104,7 @@ const WaitingSetting = () => {
         });
 
         const data = response.data;
+        console.log(data);
 
         setForm({
           waitingSettingId: data.waitingSettingId
@@ -155,12 +152,6 @@ const WaitingSetting = () => {
 
   }, []); // 컴포넌트 마운트 시 한 번 실행
 
-  // selectedStoreFromState 값이 있을 경우 자동으로 선택되도록 설정
-  useEffect(() => {
-    if (selectedStoreFromState) {
-      setSelectedStore(selectedStoreFromState);
-    }
-  }, [selectedStoreFromState]);
 
   const handleStoreChange = (event) => {
     const selectedStoreId = event.target.value;
