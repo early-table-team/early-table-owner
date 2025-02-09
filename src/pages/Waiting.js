@@ -258,7 +258,8 @@ const WaitingSetting = () => {
             <h1>웨이팅 관리</h1>
             {/* 드롭다운 목록으로 가게 이름 선택 */}
             <select onChange={handleStoreChange}
-              className="store-drop">
+              className="store-drop"
+              value={selectedStore?.storeId || ""}>
               <option value="" disabled>
                 가게를 선택하세요
               </option>
