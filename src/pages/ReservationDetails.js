@@ -44,11 +44,22 @@ const ReservationDetails = () => {
     getStoreList();
   }, []);
 
-  const handleStoreChange = (event) => {
+  const handleStoreChange = (event) => { 
     const selectedStoreId = event.target.value;
     const store = storeList.find((store) => store.storeId === parseInt(selectedStoreId));
-    setSelectedStore(store);
-  };
+    
+    setSelectedStore(store);  // 가게 변경
+    setReservationDetail(null); // 예약 상세 정보 초기화
+    setReservations([]); // 기존 예약 목록 초기화
+    setSelectedDate(new Date()); // 날짜 초기화
+};
+
+// 가게 변경될 때 자동으로 예약 내역 조회
+useEffect(() => {
+  if (selectedStore) {
+    handleDateChange(new Date()); // 선택된 가게에 맞는 예약 내역 조회
+  }
+}, [selectedStore]); // selectedStore가 변경될 때 실행
 
   const handleDateChange = async (date) => {
     setSelectedDate(date);
