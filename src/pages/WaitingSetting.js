@@ -52,6 +52,8 @@ const WaitingSetting = () => {
 
         const data = response.data;
 
+        console.log(data);
+
         setForm({
           waitingSettingId: data.waitingSettingId,
           waitingOpenTime: data.waitingOpenTime,
@@ -90,7 +92,7 @@ const WaitingSetting = () => {
           },
         });
         alert("웨이팅 수정 완료");
-  
+
       } catch (error) {
         alert("웨이팅 수정 실패");
       }
@@ -111,13 +113,13 @@ const WaitingSetting = () => {
         });
 
         alert("웨이팅 설정 완료");
-  
+
       } catch (error) {
         alert("웨이팅 설정 실패");
       }
     }
 
-    
+
 
 
   };
@@ -182,7 +184,7 @@ const WaitingSetting = () => {
 
         <div className="home">
           <div className="title-container">
-            <h1>웨이팅 설정</h1>
+            <h1>웨이팅 관리</h1>
             {/* 드롭다운 목록으로 가게 이름 선택 */}
             <select onChange={handleStoreChange}
               className="store-drop"
@@ -191,7 +193,8 @@ const WaitingSetting = () => {
                 가게를 선택하세요
               </option>
               {storeList.map((store) => (
-                <option key={store.storeId} value={store.storeId}>
+                <option key={store.storeId}
+                  value={store.storeId}>
                   {store.storeName}
                 </option>
               ))}

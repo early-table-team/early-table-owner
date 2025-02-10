@@ -3,6 +3,7 @@ import "./css/StoreUpdate.css";
 import { Link, useNavigate, useLocation } from "react-router-dom"; // React Router 사용
 import instance from "../api/axios";
 import Header from "./Header";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 
 const StoreUpdate = () => {
@@ -43,11 +44,6 @@ const StoreUpdate = () => {
 
     const formData = new FormData();
 
-    const selectedCategory = filters.storeCategories.find(
-      (category) => category.name === '한식'  // 예시: '한식'을 찾기
-    );
-    const selectedCode = selectedCategory ? selectedCategory.code : null;
-
     const selectTop = form.topRegion && form.topRegion.match(/[A-Za-z]+/)
       ? form.topRegion.match(/[A-Za-z]+/)[0]
       : null;
@@ -74,15 +70,17 @@ const StoreUpdate = () => {
     if (selectBottom) {
       formData.append("regionBottom", selectBottom);
     }
-    if (selectedCode) {
-      formData.append("storeCategory", selectedCode);
+    if (form.storeCategory) {
+      formData.append("storeCategory", form.storeCategory);
     }
-    // 이미지가 있을 경우에만 FormData에 이미지 추가
-    if (form.profileImage) {
-      form.profileImage.forEach((image, index) => {
-        formData.append("newStoreImageList", image); // 여러 개의 파일을 같은 키로 추가
-      });
-    }
+
+
+    // // 이미지가 있을 경우에만 FormData에 이미지 추가
+    // if (form.profileImage) {
+    //   form.profileImage.forEach((image, index) => {
+    //     formData.append("newStoreImageList", image); // 여러 개의 파일을 같은 키로 추가
+    //   });
+    // }
 
     try {
       await instance.put(`/pending-stores/stores/${selectedStore.storeId}`, formData, {
@@ -90,7 +88,10 @@ const StoreUpdate = () => {
           "Content-Type": "multipart/form-data", // multipart/form-data로 전송
         },
       });
+      
       alert("가게 수정 요청 성공");
+      navigate("/store/manage")
+
     } catch (error) {
       alert("가게 수정 요청 실패");
     }
@@ -134,7 +135,7 @@ const StoreUpdate = () => {
 
   useEffect(() => {
 
-    console.log(selectedStore);
+
     setForm((prevForm) => ({
       storeName: selectedStore?.storeName || "",
       storeContent: selectedStore?.storeContent,
@@ -143,7 +144,6 @@ const StoreUpdate = () => {
       bottomRegions: selectedStore?.regionBottom || "",
       storeCategory: selectedStore?.storeCategory || "",
       storeAddress: selectedStore?.storeAddress,
-      profileImageUrl: selectedStore?.storeImageUrl, // 파일은 직접 선택해야 하므로 빈 배열 유지
     }));
   }, [selectedStore]);
 
@@ -151,13 +151,11 @@ const StoreUpdate = () => {
   const handleStoreChange = (event) => {
     const selectedStoreId = event.target.value;
     const store = storeList.find((store) => store.storeId === parseInt(selectedStoreId));
-    console.log(store);
     setSelectedStore(store);
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(value);
     setForm({ ...form, [name]: value });
   };
 
@@ -184,7 +182,6 @@ const StoreUpdate = () => {
       } catch (error) {
         console.error("필터 데이터 로드 실패:", error);
       }
-
     }
 
     getFilter();
@@ -333,8 +330,6 @@ const StoreUpdate = () => {
                 )}
               </select>
 
-
-
               <input
                 type="text"
                 id="storeAddress"
@@ -375,12 +370,10 @@ const StoreUpdate = () => {
                     <button className="remove-btn" onClick={() => handleRemoveImage(index)}>✕</button>
                   </div>
                 ))}
-              </div>
+                    </div>
               <button className="upload-btn" onClick={handlePreviewClick}>이미지 변경</button>
             </div>
           </div>
-
-          {/* 선택되지 않으면 안내 메시지 */}
 
 
           <div className="button-container">
@@ -388,7 +381,7 @@ const StoreUpdate = () => {
               onClick={() => {
                 handleSubmit();
               }
-              }>가게 정보 수정</button>
+              }>가게 정보 수정 요청</button>
           </div>
 
         </div>
