@@ -63,6 +63,7 @@ const StoreCreate = () => {
         },
       });
       alert("가게 생성 요청 성공");
+      navigate("/store/manage")
     } catch (error) {
       alert("가게 생성 요청 실패");
     }

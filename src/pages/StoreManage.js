@@ -6,12 +6,6 @@ import instance from "../api/axios";
 import Header from "./Header";
 import { format } from "date-fns"
 const StoreManage = () => {
-  //   const [stores, setStores] = useState({});
-  //   const [keywords] = useState([
-  //     "웨이팅 핫플!",
-  //     "혼자 먹어요",
-  //     "새로 오픈했어요!",
-  //   ]);
   const navigate = useNavigate();
   const [storeList, setStoreList] = useState([]); // 가게 정보를 저장할 상태
   const [selectedStore, setSelectedStore] = useState(null); // 선택된 가게 상태
@@ -89,9 +83,9 @@ const StoreManage = () => {
                 <p>{format(selectedStore.createdAt, "yyyy-MM-dd")}</p>
               </div>
               <div className="img-container">
-                {selectedStore.storeImageUrl ? (
+                {selectedStore.storeImageUrlMap > 0 ? (
                   <img
-                    src={selectedStore.storeImageUrl}
+                    src={Object.values(selectedStore.storeImageUrlMap)[0]}
                     alt="프로필 이미지"
                   />
                 ) : (
@@ -110,7 +104,7 @@ const StoreManage = () => {
             >가게 추가</button>
             {selectedStore && <button
               onClick={() => navigate("/store/update", { state: { selectedStore } })}
-            >가게 정보 수정</button>}
+            >가게 정보 수정 요청</button>}
             {selectedStore && <button
               onClick={() => navigate("/store/hours", { state: { selectedStore } })}
             >영업시간 및 휴무 관리</button>}
